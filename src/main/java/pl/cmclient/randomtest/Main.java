@@ -1,6 +1,7 @@
 package pl.cmclient.randomtest;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
@@ -23,7 +24,7 @@ public class Main {
 
         for (int t = 0; t < NUM_THREADS; t++) {
             threads[t] = new Thread(() -> {
-                Random random = new Random();
+                Random random = ThreadLocalRandom.current();
                 int[] threadLocalResults = new int[3];
 
                 for (int i = 0; i < TESTS / NUM_THREADS; i++) {
