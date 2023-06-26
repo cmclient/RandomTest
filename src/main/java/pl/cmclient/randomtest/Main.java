@@ -1,4 +1,4 @@
-package pl.cmclient.randomnesstest;
+package pl.cmclient.randomtest;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
