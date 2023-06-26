@@ -1,11 +1,10 @@
 package pl.cmclient.randomtest;
 
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
 
-    private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
     private static final int TESTS = 1_000_000;
     private static final float CHANCE = 0.01F;
@@ -24,6 +23,7 @@ public class Main {
 
         for (int t = 0; t < NUM_THREADS; t++) {
             threads[t] = new Thread(() -> {
+                Random random = new Random();
                 int[] threadLocalResults = new int[3];
 
                 for (int i = 0; i < TESTS / NUM_THREADS; i++) {
@@ -31,7 +31,7 @@ public class Main {
 
                     do {
                         tries++;
-                        if (RANDOM.nextFloat() < CHANCE) {
+                        if (random.nextFloat() < CHANCE) {
                             if (tries == 1) {
                                 threadLocalResults[0]++;
                             }
